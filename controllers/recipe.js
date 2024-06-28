@@ -10,6 +10,7 @@ export const getRecipes = async (req, res) => {
       next (error);  
     }
 }
+
 // post Recipe
 export const postRecipes = async (req, res, next) => {
     try {
