@@ -1,5 +1,7 @@
 import { categoryModel } from "../models/category.js";
 
+import {toJSON} from "@reis/mongoose-to-json"
+
 export const getCategories = async (req, res, next) => {
     try {
         //Get all categories from database

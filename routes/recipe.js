@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { RecipeModel } from "../models/recipe.js";
-import { deleteRecipe, getRecipe, getRecipes, patchRecipe, postRecipes } from "../controllers/recipe.js";
+import { deleteRecipe, getRecipe, getRecipes, patchRecipe1, postRecipes } from "../controllers/recipe.js";
 
 // create router
 const recipeRouter = Router();
@@ -10,11 +10,10 @@ recipeRouter.get('/recipes', getRecipes );
 
 recipeRouter.post('/recipes', postRecipes );
 
-recipeRouter.patch('/recipes/:id', patchRecipe );
+recipeRouter.patch('/recipes/:id', patchRecipe1 );
 
 recipeRouter.delete('/recipes/:id', deleteRecipe);
 
 recipeRouter.get('/recipes/:id', getRecipe);
-
 // Export Router
 export default recipeRouter;
