@@ -17,7 +17,7 @@ expressOasGenerator.handleResponses(app, {
 
 // Apply middlewares
 app.use(express.json());
-
+app.use(express.static('uploads'));
 
 
 // use routes
@@ -25,7 +25,10 @@ app.use(recipeRouter);
 app.use(categoryRouter);
 expressOasGenerator.handleRequests();
 app.use((req, res) => res.redirect('/api-docs/'));
+
+
 // Listen for incoming request
+
 const port = process.env.PORT || 3000;
 app.listen(3000, () => {
     console.log(`App listening on port ${port}`);

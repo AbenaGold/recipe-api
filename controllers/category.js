@@ -1,9 +1,10 @@
 import { categoryModel } from "../models/category.js";
 
-import {toJSON} from "@reis/mongoose-to-json"
+import { toJSON } from "@reis/mongoose-to-json"
 
 export const getCategories = async (req, res, next) => {
     try {
+
         //Get all categories from database
         const allCategories = await categoryModel.find();
         // Return response
@@ -12,10 +13,15 @@ export const getCategories = async (req, res, next) => {
         next(error);
     }
 }
-export const postCategory = async (req, res, next) =>{
+export const postCategory = async (req, res, next) => {
     try {
-        // add category to database
-        const newCategory = await categoryModel.create(req.body);
+        
+        // add category as a file to database
+        const newCategory = await categoryModel.create({
+            ...req.body,
+            image: req.file.filename
+        });
+
         // Return response
         res.status(201).json(newCategory);
     } catch (error) {
