@@ -9,7 +9,7 @@ export const getRecipes = async (req, res) => {
         .find({name: search})
         .limit(limit)
         .skip(skip);
-        // Return all recipes as response
+        // Return all recipes 
         res.json(allRecipes);
     } catch (error) {
       next (error);  
