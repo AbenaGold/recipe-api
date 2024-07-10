@@ -3,10 +3,14 @@ import cors from "cors";
 import mongoose from "mongoose";
 import recipeRouter from "./routes/recipe.js";
 import expressOasGenerator from "express-oas-generator";
+import session from "express-session";
 import categoryRouter from "./routes/category.js";
+import userRouter from "./routes/user.js";
+
 
 // connect to database
 await mongoose.connect(process.env.MONGO_URL);
+console.log('Database connected')
 
 
 // Create Express App
@@ -20,10 +24,17 @@ expressOasGenerator.handleResponses(app, {
 app.use(cors());
 app.use(express.json());
 app.use(express.static('uploads'));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: true}
+}));
 
 
 
 // use routes
+app.use(userRouter);
 app.use(recipeRouter);
 app.use(categoryRouter);
 expressOasGenerator.handleRequests();
